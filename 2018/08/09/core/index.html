@@ -86,12 +86,12 @@
 <meta property="og:site_name" content="林间小屋">
 <meta property="og:description" content="应用上下文 Flask请求上下文 Request">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/08/09/core/context.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/09/core/core/context.png">
 <meta property="og:updated_time" content="2018-09-08T05:33:29.433Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask核心对象">
 <meta name="twitter:description" content="应用上下文 Flask请求上下文 Request">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/09/core/context.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/09/core/core/context.png">
 
 
 
@@ -375,7 +375,7 @@
 
       
         <hr>
-<p>应用上下文 <code>Flask</code><br>请求上下文 <code>Request</code><br><a id="more"></a><br><code>Flask</code>的核心对象是在<code>AppContext</code>中<br><code>Request</code>是在<code>RequestContext</code>中<br>这两个上下文都是实现了<code>push()</code>,<code>pop()</code>,<code>__enter__()</code>,<code>__exit__()</code>。<br>我画了个图，方便自己理解这个玩意。<br><img src="/2018/08/09/core/context.png" alt="core"></p>
+<p>应用上下文 <code>Flask</code><br>请求上下文 <code>Request</code><br><a id="more"></a><br><code>Flask</code>的核心对象是在<code>AppContext</code>中<br><code>Request</code>是在<code>RequestContext</code>中<br>这两个上下文都是实现了<code>push()</code>,<code>pop()</code>,<code>__enter__()</code>,<code>__exit__()</code>。<br>我画了个图，方便自己理解这个玩意。<br><img src="core/context.png" alt="core"></p>
 <h3 id="核心对象"><a href="#核心对象" class="headerlink" title="核心对象"></a>核心对象</h3><p><strong> 1.</strong>当一个请求进入Flask框架后，Flask会实例化一个<code>RequestContext</code>,这个请求上下文封装了这次请求相关信息，这个信息就保存在<code>Request</code>中。接着Flask会吧这个<code>Appcontext</code>推入到栈中,Flask中用<code>localStack</code>来表示一个栈，<code>localstack</code>是一个对象，需要实例化。Flask中用<code>_request_ctx_stack</code>来表示。同理<code>AppContext</code>也是这样的过程，用<code>_app_ctx_stack</code>表示。<br><strong> 2.</strong>当一个请求进入的时候，Flask会把<code>Requset</code>通过<code>push()</code>推入到栈中。<br>那么<code>AppContext</code>是怎么入栈。<code>Requesr</code>在入栈之前会去检查<code>_app_ctx_stack</code>的栈顶元素，如果当前栈顶是空或者不是当前对象，Flask会推<code>AppContext</code>到<code>_app_ctx_stack</code>中，然后才会将<code>RequestContext</code>推入<code>_request_ctx_stack</code>中，请求结束后，两个栈中的内容会执行<code>pop()</code>弹出<br><strong> 3.</strong><code>current_app</code>,<code>request</code>是指向的<code>_app_ctx_stack</code>,<code>_request_ctx_stack</code>的栈顶元素，如果栈中是有值的，是不会出现<code>localproxy unband</code>的情况。<br>我们看一下这个<code>test.py</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">app = flask(__name__)</span><br><span class="line">a  = current_app</span><br></pre></td></tr></table></figure></p>
 <p>在调试模式下，我们会看到<code>localproxy unband</code>,原因是<code>_app_ctx_stack</code>为空。<br>解决办法一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">app = flask(__name__)</span><br><span class="line">ctx = app.app_context()</span><br><span class="line">ctx.push()</span><br><span class="line">a  = current_app</span><br><span class="line">ctx.pop()</span><br></pre></td></tr></table></figure></p>
 <p>解决办法二<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">app = flask(__name__)</span><br><span class="line">with app.app_context():</span><br><span class="line">	a  = current_app</span><br></pre></td></tr></table></figure></p>
@@ -567,7 +567,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
