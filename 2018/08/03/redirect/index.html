@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="林间小屋" type="application/atom+xml" />
+
 
 
 
@@ -86,12 +88,12 @@
 <meta property="og:site_name" content="林间小屋">
 <meta property="og:description" content="关于重定向之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/08/03/redirect/redirect/redirect.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/03/redirect/redirect.png">
 <meta property="og:updated_time" content="2018-09-08T05:31:11.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重定向">
 <meta name="twitter:description" content="关于重定向之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm">
-<meta name="twitter:image" content="http://yoursite.com/2018/08/03/redirect/redirect/redirect.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/03/redirect/redirect.png">
 
 
 
@@ -374,7 +376,7 @@
       
 
       
-        <h3 id="关于重定向"><a href="#关于重定向" class="headerlink" title="关于重定向"></a>关于重定向</h3><p>之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm<br><a id="more"></a><br><img src="redirect/redirect.png" alt="redirect"></p>
+        <h3 id="关于重定向"><a href="#关于重定向" class="headerlink" title="关于重定向"></a>关于重定向</h3><p>之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm<br><a id="more"></a><br><img src="/2018/08/03/redirect/redirect.png" alt="redirect"></p>
 <p>首先是这样的，从浏览器中请求一个<code>url1</code>，如果一切正常，服务器会返回<code>url1</code>对应的资源，并将<code>status code</code>设置成<code>200</code>,这是一个正常的过程，而重定向却不是这样的。浏览器还是访问<code>url1</code>,服务器在接受到这个请求之后，出于某个原因，服务器没有<code>url1</code>对应的资源，或者服务器不想让访问<code>url1</code>对应的页面等等，那么此时服务器会在<code>response header</code>中增加一个<code>localtion:url2</code>并将<code>status code</code>设置为<code>301/302</code>,返回结果之后，浏览器发现<code>status code</code>是<code>301/302</code>,这个时候浏览器就会知道服务器需要你进行一次重定向，而这个新的地址则是<code>localtion</code>中的<code>url2</code>。这就是一个重定向的过程。<br><!--more--></p>
 
       
@@ -493,7 +495,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -505,6 +507,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -731,7 +740,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "";
+    var search_path = "search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {

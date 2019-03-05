@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="林间小屋" type="application/atom+xml" />
+
 
 
 
@@ -84,11 +86,11 @@
 <meta property="og:url" content="http://yoursite.com/2018/10/25/vue/index.html">
 <meta property="og:site_name" content="林间小屋">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2018/10/25/vue/vue/lifecycle.png">
+<meta property="og:image" content="http://yoursite.com/2018/10/25/vue/lifecycle.png">
 <meta property="og:updated_time" content="2018-10-29T06:39:56.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习Vue">
-<meta name="twitter:image" content="http://yoursite.com/2018/10/25/vue/vue/lifecycle.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/10/25/vue/lifecycle.png">
 
 
 
@@ -371,7 +373,7 @@
       
 
       
-        <p><img src="vue/lifecycle.png" alt=""><br><a id="more"></a></p>
+        <p><img src="/2018/10/25/vue/lifecycle.png" alt=""><br><a id="more"></a></p>
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ol>
 <li>生命周期就是vue实例在某一个时间点自动执行的函数</li>
 </ol>
@@ -497,7 +499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -509,6 +511,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -735,7 +744,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "";
+    var search_path = "search.xml";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
