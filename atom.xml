@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-05T09:00:00.929Z</updated>
+  <updated>2019-03-20T00:57:39.386Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP获取汉字的首字母</title>
+    <link href="http://yoursite.com/2019/03/20/php/"/>
+    <id>http://yoursite.com/2019/03/20/php/</id>
+    <published>2019-03-20T00:56:25.000Z</published>
+    <updated>2019-03-20T00:57:39.386Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 获取单个汉字拼音首字母。</span><br><span class="line"> */</span><br><span class="line">function getFirstChar($character)&#123;</span><br><span class="line">    $fchar = ord($character&#123;0&#125;);</span><br><span class="line">    if($fchar &gt;= ord(&quot;A&quot;) and $fchar &lt;= ord(&quot;z&quot;) ) &#123;</span><br><span class="line">        return strtoupper($character&#123;0&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    $s1 = iconv(&quot;UTF-8&quot;,&quot;gb2312&quot;,$character);</span><br><span class="line">    $s2 = iconv(&quot;gb2312&quot;,&quot;UTF-8&quot;,$s1);</span><br><span class="line">    if($s2==$character)&#123;</span><br><span class="line">        $s=$s1;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        $s=$character;</span><br><span class="line">    &#125;</span><br><span class="line">    $asc = ord($s&#123;0&#125;) * 256 + ord($s&#123;1&#125;) - 65536;</span><br><span class="line">    if($asc &gt;= -20319 &amp;&amp; $asc &lt;= -20284) return &quot;A&quot;;</span><br><span class="line">    if($asc &gt;= -20283 &amp;&amp; $asc &lt;= -19776) return &quot;B&quot;;</span><br><span class="line">    if($asc &gt;= -19775 &amp;&amp; $asc &lt;= -19219) return &quot;C&quot;;</span><br><span class="line">    if($asc &gt;= -19218 &amp;&amp; $asc &lt;= -18711) return &quot;D&quot;;</span><br><span class="line">    if($asc &gt;= -18710 &amp;&amp; $asc &lt;= -18527) return &quot;E&quot;;</span><br><span class="line">    if($asc &gt;= -18526 &amp;&amp; $asc &lt;= -18240) return &quot;F&quot;;</span><br><span class="line">    if($asc &gt;= -18239 &amp;&amp; $asc &lt;= -17923) return &quot;G&quot;;</span><br><span class="line">    if($asc &gt;= -17922 &amp;&amp; $asc &lt;= -17418) return &quot;H&quot;;</span><br><span class="line">    if($asc &gt;= -17922 &amp;&amp; $asc &lt;= -17418) return &quot;I&quot;;</span><br><span class="line">    if($asc &gt;= -17417 &amp;&amp; $asc &lt;= -16475) return &quot;J&quot;;</span><br><span class="line">    if($asc &gt;= -16474 &amp;&amp; $asc &lt;= -16213) return &quot;K&quot;;</span><br><span class="line">    if($asc &gt;= -16212 &amp;&amp; $asc &lt;= -15641) return &quot;L&quot;;</span><br><span class="line">    if($asc &gt;= -15640 &amp;&amp; $asc &lt;= -15166) return &quot;M&quot;;</span><br><span class="line">    if($asc &gt;= -15165 &amp;&amp; $asc &lt;= -14923) return &quot;N&quot;;</span><br><span class="line">    if($asc &gt;= -14922 &amp;&amp; $asc &lt;= -14915) return &quot;O&quot;;</span><br><span class="line">    if($asc &gt;= -14914 &amp;&amp; $asc &lt;= -14631) return &quot;P&quot;;</span><br><span class="line">    if($asc &gt;= -14630 &amp;&amp; $asc &lt;= -14150) return &quot;Q&quot;;</span><br><span class="line">    if($asc &gt;= -14149 &amp;&amp; $asc &lt;= -14091) return &quot;R&quot;;</span><br><span class="line">    if($asc &gt;= -14090 &amp;&amp; $asc &lt;= -13319) return &quot;S&quot;;</span><br><span class="line">    if($asc &gt;= -13318 &amp;&amp; $asc &lt;= -12839) return &quot;T&quot;;</span><br><span class="line">    if($asc &gt;= -12838 &amp;&amp; $asc &lt;= -12557) return &quot;W&quot;;</span><br><span class="line">    if($asc &gt;= -12556 &amp;&amp; $asc &lt;= -11848) return &quot;X&quot;;</span><br><span class="line">    if($asc &gt;= -11847 &amp;&amp; $asc &lt;= -11056) return &quot;Y&quot;;</span><br><span class="line">    if($asc &gt;= -11055 &amp;&amp; $asc &lt;= -10247) return &quot;Z&quot;;</span><br><span class="line">    return NULL;</span><br><span class="line">    //return $character ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo getFirstChar(&quot;我的&quot;);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux下查看系统版本号信息的方法</title>
