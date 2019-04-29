@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-31T04:30:49.565Z</updated>
+  <updated>2019-04-29T10:04:56.731Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记录一个mysql拒连的问题</title>
+    <link href="http://yoursite.com/2019/04/29/mysql/"/>
+    <id>http://yoursite.com/2019/04/29/mysql/</id>
+    <published>2019-04-29T10:03:19.000Z</published>
+    <updated>2019-04-29T10:04:56.731Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">update user set host = &apos;%&apos; where user = &apos;root&apos; and host=&apos;localhost&apos;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>node同步阻塞和异步IO模式</title>
@@ -389,24 +410,6 @@
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;amp;quality=80&amp;amp;size=b9999_10000&amp;amp;sec=1533182971827&amp;amp;di=6a46ce1f518d8834f4d085718395ea9c&amp;amp;imgtype=0&amp;amp;src=http%3A%2F%2Fup.92sucai.com%2Fold%2Fallimg%2F150525%2F1307-150525105350.jpg&quot; alt=&quot;code&quot;&gt;&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>我的博客</title>
-    <link href="http://yoursite.com/2018/07/30/blog/"/>
-    <id>http://yoursite.com/2018/07/30/blog/</id>
-    <published>2018-07-30T08:22:36.000Z</published>
-    <updated>2018-07-30T10:41:34.558Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="我的博客"><a href="#我的博客" class="headerlink" title="我的博客"></a>我的博客</h3><p><img src="https://wxt.sinaimg.cn/thumb300/7d5c3dccgy1ft3rp7owxdj20m80xc40k.jpg?tags=%5B%5D" alt="avatar"><br><a id="more"></a></p><p>大概高中的时候是有写日记的习惯，都是写些鸡毛蒜皮的碎碎念，也是坚持了两年多，大学的时候就没有再坚持写下去了。直到现在我的行李箱中还放着那三本厚厚的关于我高中生活的日记本。也算是对自己高中的一个交代吧。<br>现在开这个博客。希望自己能坚持下去吧，就这样。</p><!--more-->]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;我的博客&quot;&gt;&lt;a href=&quot;#我的博客&quot; class=&quot;headerlink&quot; title=&quot;我的博客&quot;&gt;&lt;/a&gt;我的博客&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://wxt.sinaimg.cn/thumb300/7d5c3dccgy1ft3rp7owxdj20m80xc40k.jpg?tags=%5B%5D&quot; alt=&quot;avatar&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
