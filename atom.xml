@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-30T03:31:52.031Z</updated>
+  <updated>2019-05-08T09:09:27.749Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用xunsearch实现简单分词</title>
+    <link href="http://yoursite.com/2019/05/08/xunsearch/"/>
+    <id>http://yoursite.com/2019/05/08/xunsearch/</id>
+    <published>2019-05-08T08:55:32.000Z</published>
+    <updated>2019-05-08T09:09:27.749Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://www.xunsearch.com/download/xunsearch-full-latest.tar.bz2</span><br><span class="line">$ tar -xjf xunsearch-full-latest.tar.bz2</span><br><span class="line">$ <span class="built_in">cd</span> xunsearch-full-1.3.0/</span><br><span class="line">$ sh setup.sh</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 安装目录 ; bin/./xs-ctl.sh start</span><br></pre></td></tr></table></figure></p><p>重启启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 安装目录 ; bin/./xs-ctl.sh restart</span><br></pre></td></tr></table></figure></p><p>停止<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./安装目录/bin/xs-ctl.sh faststop</span><br></pre></td></tr></table></figure></p><p>卸载<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf 安装目录</span><br></pre></td></tr></table></figure></p><p>生成实例搜索代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ util/SearchSkel.php -p 搜索项目名称（例如：demo）</span><br></pre></td></tr></table></figure></p><p>通过mysql存入数据<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php Indexer.php --rebuild --<span class="built_in">source</span>=mysql://账号:密码@mysqlIP地址/数据库 --sql=<span class="string">"sql语句"</span> --project=搜索项目名称（例如：demo）</span><br></pre></td></tr></table></figure></p><p><a href="http://www.xunsearch.com/doc/php/guide/start.installation" target="_blank" rel="noopener">传送门</a></p><!--more-->]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;安装&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ wget http://www.xunsearch.com/download/xunsearch-full-latest.tar.bz2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ tar -xjf xunsearch-full-latest.tar.bz2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ &lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; xunsearch-full-1.3.0/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;$ sh setup.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>记录一个mysql拒连的问题</title>
@@ -392,24 +410,6 @@
     <summary type="html">
     
       &lt;p&gt;最近准备把之前的学习php的撸的一个API改写成flask。磨刀不误砍柴工，在这里做一些flsak的总结。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>最近一个月的计划</title>
-    <link href="http://yoursite.com/2018/08/02/plan/"/>
-    <id>http://yoursite.com/2018/08/02/plan/</id>
-    <published>2018-08-02T01:07:07.000Z</published>
-    <updated>2018-08-02T01:22:17.459Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1533182971827&amp;di=6a46ce1f518d8834f4d085718395ea9c&amp;imgtype=0&amp;src=http%3A%2F%2Fup.92sucai.com%2Fold%2Fallimg%2F150525%2F1307-150525105350.jpg" alt="code"><br><a id="more"></a><br>之前跟着七月学习了flask框架，最近想把之前用php+小程序的一个微商城用flask重新撸一次，对flask总结以及小程序的复习。<br>时间：一个月<br><!--more --></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://timgsa.baidu.com/timg?image&amp;amp;quality=80&amp;amp;size=b9999_10000&amp;amp;sec=1533182971827&amp;amp;di=6a46ce1f518d8834f4d085718395ea9c&amp;amp;imgtype=0&amp;amp;src=http%3A%2F%2Fup.92sucai.com%2Fold%2Fallimg%2F150525%2F1307-150525105350.jpg&quot; alt=&quot;code&quot;&gt;&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
