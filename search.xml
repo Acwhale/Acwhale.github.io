@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Linux</title>
+      <link href="/2019/08/11/linux-1/"/>
+      <url>/2019/08/11/linux-1/</url>
+      
+        <content type="html"><![CDATA[<p>linux<br><a id="more"></a></p><h3 id="常用处理目录的指令"><a href="#常用处理目录的指令" class="headerlink" title="常用处理目录的指令"></a>常用处理目录的指令</h3><h4 id="cd-change-direectory-变换目录"><a href="#cd-change-direectory-变换目录" class="headerlink" title="cd (change direectory,变换目录)"></a>cd (change direectory,变换目录)</h4><h4 id="pwd-显示目前所在位置"><a href="#pwd-显示目前所在位置" class="headerlink" title="pwd(显示目前所在位置)"></a>pwd(显示目前所在位置)</h4><h4 id="mkdir-建立新目录"><a href="#mkdir-建立新目录" class="headerlink" title="mkdir(建立新目录)"></a>mkdir(建立新目录)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/test</span><br><span class="line">mkdir demo</span><br><span class="line">mkdir -p demo/log</span><br><span class="line">mkdir -m 751 test</span><br></pre></td></tr></table></figure><!--more-->]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>练习原生sql</title>
       <link href="/2019/08/10/sql/"/>
       <url>/2019/08/10/sql/</url>

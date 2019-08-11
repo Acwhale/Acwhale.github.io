@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-11T06:44:02.130Z</updated>
+  <updated>2019-08-11T12:10:56.699Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Linux</title>
+    <link href="http://yoursite.com/2019/08/11/linux-1/"/>
+    <id>http://yoursite.com/2019/08/11/linux-1/</id>
+    <published>2019-08-11T11:56:53.000Z</published>
+    <updated>2019-08-11T12:10:56.699Z</updated>
+    
+    <content type="html"><![CDATA[<p>linux<br><a id="more"></a></p><h3 id="常用处理目录的指令"><a href="#常用处理目录的指令" class="headerlink" title="常用处理目录的指令"></a>常用处理目录的指令</h3><h4 id="cd-change-direectory-变换目录"><a href="#cd-change-direectory-变换目录" class="headerlink" title="cd (change direectory,变换目录)"></a>cd (change direectory,变换目录)</h4><h4 id="pwd-显示目前所在位置"><a href="#pwd-显示目前所在位置" class="headerlink" title="pwd(显示目前所在位置)"></a>pwd(显示目前所在位置)</h4><h4 id="mkdir-建立新目录"><a href="#mkdir-建立新目录" class="headerlink" title="mkdir(建立新目录)"></a>mkdir(建立新目录)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home/test</span><br><span class="line">mkdir demo</span><br><span class="line">mkdir -p demo/log</span><br><span class="line">mkdir -m 751 test</span><br></pre></td></tr></table></figure><!--more-->]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;linux&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>练习原生sql</title>
@@ -392,24 +410,6 @@
         &lt;p&gt;这样的女子，来的时候百花齐放，去时却不是荼蘼满地，而是留下了春天。&lt;br&gt;你应该羡慕自己，在不合适的季节谈了一场合适的恋爱。&lt;/p&gt;
 
       
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>重定向</title>
-    <link href="http://yoursite.com/2018/08/03/redirect/"/>
-    <id>http://yoursite.com/2018/08/03/redirect/</id>
-    <published>2018-08-03T08:36:12.000Z</published>
-    <updated>2018-09-08T05:31:11.722Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="关于重定向"><a href="#关于重定向" class="headerlink" title="关于重定向"></a>关于重定向</h3><p>之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm<br><a id="more"></a><br><img src="/2018/08/03/redirect/redirect.png" alt="redirect"></p><p>首先是这样的，从浏览器中请求一个<code>url1</code>，如果一切正常，服务器会返回<code>url1</code>对应的资源，并将<code>status code</code>设置成<code>200</code>,这是一个正常的过程，而重定向却不是这样的。浏览器还是访问<code>url1</code>,服务器在接受到这个请求之后，出于某个原因，服务器没有<code>url1</code>对应的资源，或者服务器不想让访问<code>url1</code>对应的页面等等，那么此时服务器会在<code>response header</code>中增加一个<code>localtion:url2</code>并将<code>status code</code>设置为<code>301/302</code>,返回结果之后，浏览器发现<code>status code</code>是<code>301/302</code>,这个时候浏览器就会知道服务器需要你进行一次重定向，而这个新的地址则是<code>localtion</code>中的<code>url2</code>。这就是一个重定向的过程。<br><!--more--></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;关于重定向&quot;&gt;&lt;a href=&quot;#关于重定向&quot; class=&quot;headerlink&quot; title=&quot;关于重定向&quot;&gt;&lt;/a&gt;关于重定向&lt;/h3&gt;&lt;p&gt;之前一直对重定向懵懂，于是今儿抽空对重定向做个总结，利人利己。画的有点丑，将就看。emmm&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
