@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="林间小屋">
 <meta property="og:description" content="redis">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-26T16:54:31.728Z">
+<meta property="og:updated_time" content="2019-08-27T03:05:02.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
 <meta name="twitter:description" content="redis">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  446
+                  951
                 </span>
               
 
@@ -389,9 +389,31 @@
 <h4 id="RANDOMKEY"><a href="#RANDOMKEY" class="headerlink" title="RANDOMKEY"></a>RANDOMKEY</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">从当前数据库返回一个随机的key</span><br><span class="line"></span><br><span class="line">返回 nil/key</span><br></pre></td></tr></table></figure>
 <h4 id="RENAME-key-newkey"><a href="#RENAME-key-newkey" class="headerlink" title="RENAME key newkey"></a>RENAME key newkey</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将key重命名为newkey，如果key与newkey相同，将返回一个错误。如果newkey已经存在，则值将被覆盖</span><br></pre></td></tr></table></figure>
 <h4 id="RENAMENX-key-newkey"><a href="#RENAMENX-key-newkey" class="headerlink" title="RENAMENX key newkey"></a>RENAMENX key newkey</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">当且仅当 newkey 不存在时，将 key 改名为 newkey 。</span><br><span class="line">当 key 不存在时，返回一个错误。</span><br></pre></td></tr></table></figure>
-<h4 id="TYPE-key"><a href="#TYPE-key" class="headerlink" title="TYPE key"></a>TYPE key</h4><pre><code>返回当前key的数据类型，如果key不存在时返回none。
-
-</code></pre><!--more-->
+<h4 id="TYPE-key"><a href="#TYPE-key" class="headerlink" title="TYPE key"></a>TYPE key</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">返回当前key的数据类型，如果key不存在时返回none。</span><br><span class="line"></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line">### string</span><br><span class="line"></span><br><span class="line">#### APPEND key value</span><br></pre></td></tr></table></figure>
+<p>如果key存在且值是字符串则将value追加，如果不存在则创建一个空的字符串并追加，类似于set操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### BITCOUNT key [start end]</span><br></pre></td></tr></table></figure></p>
+<p>统计字符串被设置为1的bit数<br>返回被设置为1的数量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### DECR key</span><br></pre></td></tr></table></figure></p>
+<p>数字：减小之后的value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### INCR key</span><br></pre></td></tr></table></figure></p>
+<p>执行递增操作后key对应的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### INCRBY key  increment</span><br></pre></td></tr></table></figure></p>
+<p>增加之后key对应的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### INCRBYFLOAT key increment</span><br></pre></td></tr></table></figure></p>
+<p>当前key增加increment后的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### DECRBY key decrement</span><br></pre></td></tr></table></figure>
+<p>返回一个数字：减少之后的value值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### GET key</span><br></pre></td></tr></table></figure></p>
+<p>key对应的value，或者nil（key不存在时）只对string类型的数据有效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### GETRANGE key start end</span><br></pre></td></tr></table></figure></p>
+<p>set key ‘this is key’<br>getrange key 0 1  //th<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### GETSET key value</span><br></pre></td></tr></table></figure></p>
+<p>自动将key对应到value并且返回原来key对应的value。如果key存在但是对应的value不是字符串，就返回错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### MGET key[key...]</span><br></pre></td></tr></table></figure></p>
+<p>指定的key对应的values的list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### MSET key value [key value ...]</span><br></pre></td></tr></table></figure></p>
+<p>对应给定的keys到他们相应的values上。MSET会用新的value替换已经存在的value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### MSETNX key value [key value ...]</span><br></pre></td></tr></table></figure></p>
+<p>对应给定的keys到他们相应的values上。只要有一个key已经存在，MSETNX一个操作都不会执行。</p>
+<p>1 如果所有的key被set<br>0 如果没有key被set(至少其中有一个key是存在的)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### PSETEX key milliseconds value</span><br></pre></td></tr></table></figure></p>
+<p>到期时间以毫秒为单位<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### SETEX key seconds value</span><br></pre></td></tr></table></figure></p>
+<p>设置key对应字符串value，并且设置key在给定的seconds时间之后超时过期<br>等同于 set key value  expire key seconds<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### SETNX key value</span><br></pre></td></tr></table></figure></p>
+<p>将key设置值为value，如果key不存在，这种情况下等同SET命令。 当key存在时，什么也不做</p>
+<p>1 如果key被设置了<br>0 如果key没有被设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### SETRANGE key offset value</span><br></pre></td></tr></table></figure></p>
+<p>覆盖key对应的string的一部分，从指定的offset处开始，覆盖value的长度</p>
+<p>该命令修改后的字符串长度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### STRLEN key</span><br></pre></td></tr></table></figure></p>
+<p>返回key的string类型value的长度。如果key对应的非string类型，就返回错误</p>
+<p>key对应的字符串value的长度，或者0（key不存在）</p>
+<p><code>`</code><br><!--more--></p>
 
       
     </div>

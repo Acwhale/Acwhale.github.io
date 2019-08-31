@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="林间小屋">
 <meta property="og:description" content="做这个记录的主要原因是因为之前之前都是用ORM框架生成sql。然而现在在用原生sql的时候有点手生。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-11T06:44:02.130Z">
+<meta property="og:updated_time" content="2019-08-31T07:50:11.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="练习原生sql">
 <meta name="twitter:description" content="做这个记录的主要原因是因为之前之前都是用ORM框架生成sql。然而现在在用原生sql的时候有点手生。">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  686
+                  1.2k
                 </span>
               
 
@@ -483,6 +483,59 @@
 <h3 id="插入完整的行"><a href="#插入完整的行" class="headerlink" title="插入完整的行"></a>插入完整的行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO orders</span><br><span class="line">VALUES</span><br><span class="line">	(300000, NOW(), 1000000003)</span><br><span class="line"></span><br><span class="line">INSERT INTO orders (</span><br><span class="line">	order_num,</span><br><span class="line">	order_date,</span><br><span class="line">	cust_id</span><br><span class="line">)</span><br><span class="line">VALUES</span><br><span class="line">	(300001, NOW(), 1000000003)</span><br><span class="line"></span><br><span class="line">插入多行</span><br><span class="line">INSERT INTO orders (</span><br><span class="line">	order_num,</span><br><span class="line">	order_date,</span><br><span class="line">	cust_id</span><br><span class="line">)</span><br><span class="line">VALUES</span><br><span class="line">	(300002, NOW(), 1000000003),</span><br><span class="line">	(300003, NOW(), 1000000003)</span><br></pre></td></tr></table></figure>
 <h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="UPDATE"></a>UPDATE</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">UPDATE orders</span><br><span class="line">SET order_date = NOW()</span><br><span class="line">WHERE</span><br><span class="line">	cust_id = 1000000003</span><br></pre></td></tr></table></figure>
 <h3 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">DELETE</span><br><span class="line">FROM</span><br><span class="line">	orders</span><br><span class="line">WHERE</span><br><span class="line">	orders.order_num = 300003</span><br></pre></td></tr></table></figure>
+<h3 id="mysql索引"><a href="#mysql索引" class="headerlink" title="mysql索引"></a>mysql索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">单值索引：一个索引只包含一个列，一个表可以有多个单值索引</span><br><span class="line">唯一索引：索引列的值必须唯一，但允许有空值</span><br><span class="line">复合索引：一个索引包含多个列(</span><br><span class="line">	CREATE INDEX indexname on table(columnnane(length))</span><br><span class="line">	ALTER table add INDEX[indexname] on (columnname(length))</span><br><span class="line">	DROP INDEX [indexname] on table </span><br><span class="line">	SHOW INDEX FROM table </span><br><span class="line">	)</span><br></pre></td></tr></table></figure>
+<h3 id="什么时候建立索引"><a href="#什么时候建立索引" class="headerlink" title="什么时候建立索引"></a>什么时候建立索引</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1 唯一主键</span><br><span class="line">2 频繁作为查询条件的字段</span><br><span class="line">3 查询中作为外键的字段</span><br><span class="line">4 频繁更新的字段不适合创建索引</span><br><span class="line">5 where条件中用不到的不创建</span><br><span class="line">6 查询中排序的字段</span><br><span class="line">7 查询中统计/分组的字段</span><br></pre></td></tr></table></figure>
+<h3 id="EXPLAIN"><a href="#EXPLAIN" class="headerlink" title="EXPLAIN"></a>EXPLAIN</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * from table</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>表示执行操作表的数据 id相同，执行从上而下 ;id不同 如果是子查询，id越大，优先级越高</td>
+</tr>
+<tr>
+<td>select_type</td>
+<td>查询类型 SIMPLE、 PRIMARY(最外层标记)、 SUBQUERY(子查询)、 DERIVED() 、UNION(第二个select出现在union后则标记为union,若union出现在from的子查询中则标记为derived)、 UNION RESULT(union结果的标记)</td>
+</tr>
+<tr>
+<td>table</td>
+<td>查询表的名字</td>
+</tr>
+<tr>
+<td>type</td>
+<td>访问类型排列 好-&gt;差 system(表只有一行的时候)-&gt;const(表示一次索引就找到)-&gt;eq_ref(唯一索引扫描)-&gt;ref(非唯一性索引，返回某列的所有值)-&gt;range(范围索引)-&gt;index(索引)-&gt;all</td>
+</tr>
+<tr>
+<td>possible_keys</td>
+<td>显示可能用在该表上的索引 一个/多个，不一定被使用</td>
+</tr>
+<tr>
+<td>key</td>
+<td>实际使用的索引，如果是null，则没有使用索引，查询中如果使用了覆盖索引，则该索引仅出现在key列表中</td>
+</tr>
+<tr>
+<td>key_len</td>
+<td>索引字段显示的最大长度，并非实际使用长度，在不失精度的情况下，越短越好</td>
+</tr>
+<tr>
+<td>ref</td>
+<td>索引的哪一个列被使用了</td>
+</tr>
+<tr>
+<td>rows</td>
+<td>根据表统计信息yi’ji索引使用情况，大致估算找到所需记录需要读取的行数</td>
+</tr>
+<tr>
+<td>extra</td>
+<td>其他的额外信息 using filesort 文件排序 using tempoarary using index 表示使用了覆盖索引 using where 表示使用了where过滤 using join buffer 使用了连接缓存 impossible where  where子句的值总是false 并不能用来获取任何元组</td>
+</tr>
+</tbody>
+</table>
 <!--more-->
 
       
@@ -655,7 +708,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-DESC，ASC"><span class="nav-number">1.</span> <span class="nav-text">order by(DESC，ASC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-limit-查询某个列最大-最小的值"><span class="nav-number">2.</span> <span class="nav-text">order by limit (查询某个列最大/最小的值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句操作符"><span class="nav-number">4.</span> <span class="nav-text">where子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值检查-is-null"><span class="nav-number">5.</span> <span class="nav-text">空值检查(is null)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND操作符"><span class="nav-number">6.</span> <span class="nav-text">AND操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR操作符"><span class="nav-number">7.</span> <span class="nav-text">OR操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN操作符"><span class="nav-number">8.</span> <span class="nav-text">IN操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOT操作符"><span class="nav-number">9.</span> <span class="nav-text">NOT操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分号（-）通配符"><span class="nav-number">10.</span> <span class="nav-text">百分号（%）通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线（-）通配符-只能匹配单字符不能匹配多字符"><span class="nav-number">11.</span> <span class="nav-text">下划线（_）通配符 (只能匹配单字符不能匹配多字符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本字符匹配"><span class="nav-number">12.</span> <span class="nav-text">基本字符匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat-拼接"><span class="nav-number">13.</span> <span class="nav-text">Concat() 拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本处理函数"><span class="nav-number">14.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为计算字段使用子查询"><span class="nav-number">15.</span> <span class="nav-text">作为计算字段使用子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笛卡尔积"><span class="nav-number">16.</span> <span class="nav-text">笛卡尔积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INNER-JOIN"><span class="nav-number">17.</span> <span class="nav-text">INNER JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNION"><span class="nav-number">18.</span> <span class="nav-text">UNION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入完整的行"><span class="nav-number">19.</span> <span class="nav-text">插入完整的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE"><span class="nav-number">20.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">21.</span> <span class="nav-text">DELETE</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-DESC，ASC"><span class="nav-number">1.</span> <span class="nav-text">order by(DESC，ASC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-limit-查询某个列最大-最小的值"><span class="nav-number">2.</span> <span class="nav-text">order by limit (查询某个列最大/最小的值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句操作符"><span class="nav-number">4.</span> <span class="nav-text">where子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值检查-is-null"><span class="nav-number">5.</span> <span class="nav-text">空值检查(is null)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND操作符"><span class="nav-number">6.</span> <span class="nav-text">AND操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR操作符"><span class="nav-number">7.</span> <span class="nav-text">OR操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN操作符"><span class="nav-number">8.</span> <span class="nav-text">IN操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOT操作符"><span class="nav-number">9.</span> <span class="nav-text">NOT操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分号（-）通配符"><span class="nav-number">10.</span> <span class="nav-text">百分号（%）通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线（-）通配符-只能匹配单字符不能匹配多字符"><span class="nav-number">11.</span> <span class="nav-text">下划线（_）通配符 (只能匹配单字符不能匹配多字符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本字符匹配"><span class="nav-number">12.</span> <span class="nav-text">基本字符匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat-拼接"><span class="nav-number">13.</span> <span class="nav-text">Concat() 拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本处理函数"><span class="nav-number">14.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为计算字段使用子查询"><span class="nav-number">15.</span> <span class="nav-text">作为计算字段使用子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笛卡尔积"><span class="nav-number">16.</span> <span class="nav-text">笛卡尔积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INNER-JOIN"><span class="nav-number">17.</span> <span class="nav-text">INNER JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNION"><span class="nav-number">18.</span> <span class="nav-text">UNION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入完整的行"><span class="nav-number">19.</span> <span class="nav-text">插入完整的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE"><span class="nav-number">20.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">21.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql索引"><span class="nav-number">22.</span> <span class="nav-text">mysql索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候建立索引"><span class="nav-number">23.</span> <span class="nav-text">什么时候建立索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPLAIN"><span class="nav-number">24.</span> <span class="nav-text">EXPLAIN</span></a></li></ol></div>
             
 
           </div>
