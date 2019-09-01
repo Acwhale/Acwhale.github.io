@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="江边的旱鸭子">
 <meta property="og:description" content="做这个记录的主要原因是因为之前之前都是用ORM框架生成sql。然而现在在用原生sql的时候有点手生。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-31T13:57:31.949Z">
+<meta property="og:updated_time" content="2019-09-01T08:18:58.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="练习原生sql">
 <meta name="twitter:description" content="做这个记录的主要原因是因为之前之前都是用ORM框架生成sql。然而现在在用原生sql的时候有点手生。">
@@ -349,7 +349,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.4k
+                  2k
                 </span>
               
 
@@ -537,6 +537,51 @@
 </tbody>
 </table>
 <h3 id="索引失效的情况"><a href="#索引失效的情况" class="headerlink" title="索引失效的情况"></a>索引失效的情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.全值匹配(索引个数，索引顺序一致)</span><br><span class="line">2.最佳左前缀法则(复合索引遵循最左前缀原则，索引从左开始，并且不跳过索引列)</span><br><span class="line">3.不在索引列上做操作(计算、函数，自动/手动转换)，导致索引失效并转向全表扫描</span><br><span class="line">4.存储引擎不能使用范围条件右边的列</span><br><span class="line">5.尽量使用覆盖索引，减少select *</span><br><span class="line">6. 使用不等于(!= / &lt;&gt;)无法使用索引会导致全表扫描</span><br><span class="line">7.is(not) null 无法使用索引</span><br><span class="line">8.like通配符以(&apos;%adc....&apos;)mysql索引会失效，导致全表扫描 like %加右边(使用覆盖索引解决)</span><br><span class="line">9.字符串类型不加单引号索引失效</span><br><span class="line">10.少用or，用or连接时索引会失效</span><br></pre></td></tr></table></figure>
+<h3 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">READ UNCOMMITED (读未提交)：事务中的修改，即使没有提交，对其他事务也是可见的。会导致脏读。</span><br><span class="line"></span><br><span class="line">READ COMMITED (读提交):大多数数据库系统默认的隔离级别(mysql不是),一个事务从开始到提交之前，所做的修改对于其他事务都是不可见的。</span><br><span class="line"></span><br><span class="line">REPEATABLE READ (可重复读，mysql默认的隔离级别)：解决了脏读的问题，保证了在同一个事务中多次读取同样记录的结果是一致的。但是无法解决幻读的问题。幻读指：当一个事务在读取某个范围内的记录时，另一个事务又在该范围内插入了新的记录，当之前的事务在读取某个范围的记录时，会产生幻行。</span><br><span class="line"></span><br><span class="line">SERIALIZABLE (可串行化):最高的隔离级别，通过强制事务串行执行，避免了幻读的问题。在读取时会在每一行上都加上锁，所以可能导致大量的超时和锁争用的问题。</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读可能性</th>
+<th>不可重复读可能性</th>
+<th>幻读可能性</th>
+<th>加锁读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>READ UNCOMMITED</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>READ COMMITED</td>
+<td>NO</td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>REPEATABLE READ</td>
+<td>NO</td>
+<td>NO</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>SERIALIZABLE</td>
+<td>NO</td>
+<td>NO</td>
+<td>NO</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<h3 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">两个/多个事务在同一资源上相互占用，并请求锁定占用对方的资源，从而导致恶性循环。</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line"></span><br><span class="line">START TRANSACTION;</span><br><span class="line">UPDATE table set a = 1 WHERE id = 4;</span><br><span class="line">UPDATE table set a = 2 WHERE id = 3;</span><br><span class="line">COMMIT </span><br><span class="line"></span><br><span class="line">START TRANSACTION;</span><br><span class="line">UPDATE table set b = 1 WHERE id = 3;</span><br><span class="line">UPDATE table set b = 2 WHERE id = 4;</span><br><span class="line">COMMIT </span><br><span class="line"></span><br><span class="line">如果两个事务都执行了第一条UPDATE语句，更新了一行，同时也锁定了改行，接着每个事务都尝试去执行第二条语句，却发现该行已被对方锁定，然后两个事务都在等待对方释放这个锁，则陷入死循环。</span><br></pre></td></tr></table></figure>
+<h3 id="mysql的事务"><a href="#mysql的事务" class="headerlink" title="mysql的事务"></a>mysql的事务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 自动提交(AUTOCOMMIT):SHOW VARIABLES like &apos;AUTOCOMMIT&apos;; SET AUTOCOMMIT = 1/0(开启/关闭)</span><br></pre></td></tr></table></figure>
+<h3 id="转换表引擎C"><a href="#转换表引擎C" class="headerlink" title="转换表引擎C"></a>转换表引擎C</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.ALTER TABLE tablename ENGINE = InnoDB;缺点：执行时间长。将数据从原表复制到新表。同时原表会加读锁</span><br><span class="line"></span><br><span class="line">2.导入与导出</span><br><span class="line">使用mysqldump工具将数据导出到文件，然后修改CREATE TABLE语句的存储引擎选项，注意修改表名。</span><br><span class="line"></span><br><span class="line">3.创建与查询</span><br><span class="line">CREATE TABLE　innodb_table like myisam_table;</span><br><span class="line">ALTER TABLE innodb_table ENGINE = InnoDB;</span><br><span class="line">INSERT INTO innodb_table SELECT * FROM  mysiam_table;</span><br></pre></td></tr></table></figure>
 <!--more-->
 
       
@@ -709,7 +754,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-DESC，ASC"><span class="nav-number">1.</span> <span class="nav-text">order by(DESC，ASC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-limit-查询某个列最大-最小的值"><span class="nav-number">2.</span> <span class="nav-text">order by limit (查询某个列最大/最小的值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句操作符"><span class="nav-number">4.</span> <span class="nav-text">where子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值检查-is-null"><span class="nav-number">5.</span> <span class="nav-text">空值检查(is null)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND操作符"><span class="nav-number">6.</span> <span class="nav-text">AND操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR操作符"><span class="nav-number">7.</span> <span class="nav-text">OR操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN操作符"><span class="nav-number">8.</span> <span class="nav-text">IN操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOT操作符"><span class="nav-number">9.</span> <span class="nav-text">NOT操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分号（-）通配符"><span class="nav-number">10.</span> <span class="nav-text">百分号（%）通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线（-）通配符-只能匹配单字符不能匹配多字符"><span class="nav-number">11.</span> <span class="nav-text">下划线（_）通配符 (只能匹配单字符不能匹配多字符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本字符匹配"><span class="nav-number">12.</span> <span class="nav-text">基本字符匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat-拼接"><span class="nav-number">13.</span> <span class="nav-text">Concat() 拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本处理函数"><span class="nav-number">14.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为计算字段使用子查询"><span class="nav-number">15.</span> <span class="nav-text">作为计算字段使用子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笛卡尔积"><span class="nav-number">16.</span> <span class="nav-text">笛卡尔积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INNER-JOIN"><span class="nav-number">17.</span> <span class="nav-text">INNER JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNION"><span class="nav-number">18.</span> <span class="nav-text">UNION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入完整的行"><span class="nav-number">19.</span> <span class="nav-text">插入完整的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE"><span class="nav-number">20.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">21.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql索引"><span class="nav-number">22.</span> <span class="nav-text">mysql索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候建立索引"><span class="nav-number">23.</span> <span class="nav-text">什么时候建立索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPLAIN"><span class="nav-number">24.</span> <span class="nav-text">EXPLAIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引失效的情况"><span class="nav-number">25.</span> <span class="nav-text">索引失效的情况</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-DESC，ASC"><span class="nav-number">1.</span> <span class="nav-text">order by(DESC，ASC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#order-by-limit-查询某个列最大-最小的值"><span class="nav-number">2.</span> <span class="nav-text">order by limit (查询某个列最大/最小的值)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">3.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句操作符"><span class="nav-number">4.</span> <span class="nav-text">where子句操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值检查-is-null"><span class="nav-number">5.</span> <span class="nav-text">空值检查(is null)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AND操作符"><span class="nav-number">6.</span> <span class="nav-text">AND操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OR操作符"><span class="nav-number">7.</span> <span class="nav-text">OR操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IN操作符"><span class="nav-number">8.</span> <span class="nav-text">IN操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NOT操作符"><span class="nav-number">9.</span> <span class="nav-text">NOT操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分号（-）通配符"><span class="nav-number">10.</span> <span class="nav-text">百分号（%）通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下划线（-）通配符-只能匹配单字符不能匹配多字符"><span class="nav-number">11.</span> <span class="nav-text">下划线（_）通配符 (只能匹配单字符不能匹配多字符)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本字符匹配"><span class="nav-number">12.</span> <span class="nav-text">基本字符匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Concat-拼接"><span class="nav-number">13.</span> <span class="nav-text">Concat() 拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本处理函数"><span class="nav-number">14.</span> <span class="nav-text">文本处理函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为计算字段使用子查询"><span class="nav-number">15.</span> <span class="nav-text">作为计算字段使用子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#笛卡尔积"><span class="nav-number">16.</span> <span class="nav-text">笛卡尔积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#INNER-JOIN"><span class="nav-number">17.</span> <span class="nav-text">INNER JOIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNION"><span class="nav-number">18.</span> <span class="nav-text">UNION</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入完整的行"><span class="nav-number">19.</span> <span class="nav-text">插入完整的行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UPDATE"><span class="nav-number">20.</span> <span class="nav-text">UPDATE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DELETE"><span class="nav-number">21.</span> <span class="nav-text">DELETE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql索引"><span class="nav-number">22.</span> <span class="nav-text">mysql索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候建立索引"><span class="nav-number">23.</span> <span class="nav-text">什么时候建立索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXPLAIN"><span class="nav-number">24.</span> <span class="nav-text">EXPLAIN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引失效的情况"><span class="nav-number">25.</span> <span class="nav-text">索引失效的情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离级别"><span class="nav-number">26.</span> <span class="nav-text">隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#死锁"><span class="nav-number">27.</span> <span class="nav-text">死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql的事务"><span class="nav-number">28.</span> <span class="nav-text">mysql的事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换表引擎C"><span class="nav-number">29.</span> <span class="nav-text">转换表引擎C</span></a></li></ol></div>
             
 
           </div>
