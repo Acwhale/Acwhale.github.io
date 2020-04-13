@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-27T03:05:02.102Z</updated>
+  <updated>2020-04-13T15:16:59.175Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2020/04/13/chat/"/>
+    <id>http://yoursite.com/2020/04/13/chat/</id>
+    <published>2020-04-13T14:28:49.598Z</published>
+    <updated>2020-04-13T15:16:59.175Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>title: 闲叙<br>date: 2020-04-13 22:28:49<br>tags:</p><p>晚上9.30，我给我高中语文老师打了一个电话。聊了一下自己的决定。前几天我很焦虑，心情不是很舒服。不知道自己一个人在外面再坚持什么东西。老师和我讲:你去做一个思维导图，自己心里在想什么就去写什么，慢慢去捋顺你的思路。我今天打电话给我的老师和她说了我决定，以及我自己以后想做的事情。老师说听起来是一个不错的选择，那就去做。不要虎头蛇尾。聊着聊着就聊到我记忆中影响很深的老师。</p><a id="more"></a><p>我刚上初中的时候家里让我去城里读书，那会我妈一个星期给我15块作为生活费在从家带点干粮什么的。这可能是我从小到大第一次自己可以掌握这么多钱，也不敢乱花。开始了我的住校生活。感冒了，本来想抗一抗就过去了，没想到自己烧到了38°多。那天上语文课，我们老师看我状态不对就问我怎么了，摸了摸我额头，就带我去医务室了。校医说烧的厉害，打针吃退烧药。我悄悄的和我老师说我钱没那么多。先打针，钱我你垫了，以后再说。那会我真的差点没忍住。第一次觉得别人这么温暖。</p><p>我的初中数学老师，我记得我初中学证明题的时候，周天在家做作业，不会证明。我就去问我爷爷（爷爷奶奶之前是老师），我爷爷也没证明出来。就让我早点去学校（我住校的时候周天晚上是有晚自习的）找我数学老师问，可能那会还比较傻，大冬天的就站在我们老师宿舍门口楞生生的等了两个多小时。数学老师见到我，问我在这儿干嘛，我巴拉巴拉说了一堆。老师带我进了宿舍给我讲了题，说以后别楞在这儿等，我有晚自习的时候大概什么时候到学校。然后我就回去自习了。我们数学老师是真滴狠，和我们讲考试，数学题什么都可以错，计算题除外。错一个计算题就5个板子，我不管你是好学生还是什么。我记得有次考完试 我们教室挨板子的人超过了2/3，在此之后挨板子的人越来越少。</p><p>高中的时候我的第一个语文老师，第一次被他震惊到的时候是在给我讲红楼梦的时候，全程不带教案板书讲课。第一次觉得老师还可以这么讲课，真的恨震惊。</p><p>今天和我老师聊天，俺问他除了我之外还有别的学生联系你嘛！她说没有，你是第一个。emmmmmm,有点想笑。<br>为什么我会和老师聊天呢，这个事情还要从很久很久之前说起，我记得我上高三的时候，早晨刚下了晨读，俺老师给我塞了一个鸡蛋一袋牛奶。我当时人都是傻的，傻呵呵的就接下了。然后隔隔三岔五就给俺塞点吃的，我那会嘴就笨的离谱。好像连个谢谢老师都没讲，但是俺记住了老师对我很好。遇到啥事也会和老师聊点。所以就有了今晚的聊天也就有了今晚这个写的乱七八糟的文字。（我不会说这个是老师逼着我写的。）</p><p>emmmmm，<code>感谢那些我遇到的好的老师!</code><br><!--more--></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;p&gt;title: 闲叙&lt;br&gt;date: 2020-04-13 22:28:49&lt;br&gt;tags:&lt;/p&gt;
+&lt;p&gt;晚上9.30，我给我高中语文老师打了一个电话。聊了一下自己的决定。前几天我很焦虑，心情不是很舒服。不知道自己一个人在外面再坚持什么东西。老师和我讲:你去做一个思维导图，自己心里在想什么就去写什么，慢慢去捋顺你的思路。我今天打电话给我的老师和她说了我决定，以及我自己以后想做的事情。老师说听起来是一个不错的选择，那就去做。不要虎头蛇尾。聊着聊着就聊到我记忆中影响很深的老师。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Redis</title>
@@ -384,27 +404,6 @@
         &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;thinkphp5.1试水。&lt;br&gt;&lt;!--more--&gt;&lt;/p&gt;
 &lt;h3 id=&quot;独立验证&quot;&gt;&lt;a href=&quot;#独立验证&quot; class=&quot;headerlink&quot; title=&quot;独立验证&quot;&gt;&lt;/a&gt;独立验证&lt;/h3&gt;&lt;figure cl
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>回归</title>
-    <link href="http://yoursite.com/2018/08/07/LOL/"/>
-    <id>http://yoursite.com/2018/08/07/LOL/</id>
-    <published>2018-08-07T01:03:23.000Z</published>
-    <updated>2018-09-08T05:34:38.582Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="/2018/08/07/LOL/anivia.jpg" alt="anivia"><br>2017年8月7号上午，<a href="https://panda.tv/15403" target="_blank" rel="noopener">熊猫花小乐</a>回归联盟。祝好，BB乐。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;img src=&quot;/2018/08/07/LOL/anivia.jpg&quot; alt=&quot;anivia&quot;&gt;&lt;br&gt;2017年8月7号上午，&lt;a href=&quot;https://panda.tv/15403&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;熊猫花小乐&lt;
       
     
     </summary>
